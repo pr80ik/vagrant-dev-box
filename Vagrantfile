@@ -58,12 +58,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # Give the VBox a name
       vb.customize ["modifyvm", :id, "--name", "vagrant-dev"]
     end
+
     #
     # View the documentation for the provider you're using for more
     # information on available options.
 
+    # setup the vm through the setup.sh shell script
+    c.vm.provision "shell", path: "provisioning/shell/setup.sh"
+
+    # setup the vm through the Ansible playbook.
+    # see https://docs.ansible.com/ansible/playbooks.html
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "./provisioning/playbook.yml"
+      ansible.playbook = "./provisioning/ansible/playbook.yml"
       ansible.groups = { "vagrant-servers" => ["vagrant-dev"] }
       ansible.extra_vars = { ansible_ssh_user: "vagrant" }
       ansible.sudo = true
