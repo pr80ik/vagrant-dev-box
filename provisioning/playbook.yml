@@ -1,0 +1,8 @@
+---
+- name: Vagrant provision via. Ansible
+  hosts: vagrant-servers
+  roles:
+    - nginx
+    - redis
+    - postgresql
+    - golang

@@ -1,0 +1,6 @@
+---
+
+- name: "Install go-lang"
+  apt:
+    name=golang
+    state=present
