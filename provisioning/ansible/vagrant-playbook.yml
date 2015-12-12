@@ -1,6 +1,6 @@
 ---
 - name: Vagrant provision via. Ansible
-  hosts: vagrant-servers
+  hosts: all
   roles:
     - nginx
     - redis

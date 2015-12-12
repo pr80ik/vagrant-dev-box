@@ -3,6 +3,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-echo "Configuring the vagrant box!"
+# install needed packages for ansible
+apt-get install -y -q ansible
 
-exit 0;
+cd /vagrant/provisioning/ansible/
+ansible-playbook -i "localhost," -c local vagrant-playbook.yml
+
+exit 0
